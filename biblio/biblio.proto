@@ -1,0 +1,17 @@
+syntax = "proto3";
+option go_package = "github.com/digutier/tarea2sd/biblio";
+
+message Mensaje {
+    string body = 1;
+}
+
+message Chunk {
+    string id = 1;
+    int64 tamano = 2;
+    string libro = 3;
+}
+
+service BiblioService {
+    rpc Chunks(Chunk) returns (Mensaje) {}
+    rpc UnChunks(Mensaje) returns (Chunk) {}
+}
