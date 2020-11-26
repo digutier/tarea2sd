@@ -1,7 +1,7 @@
 syntax = "proto3";
 option go_package = "github.com/digutier/tarea2sd/biblio";
 
-package bibilio;
+package biblio;
 
 message Mensaje {
     string body = 1;
