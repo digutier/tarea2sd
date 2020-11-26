@@ -1,6 +1,8 @@
 syntax = "proto3";
 option go_package = "github.com/digutier/tarea2sd/biblio";
 
+package bibilio;
+
 message Mensaje {
     string body = 1;
 }
@@ -11,7 +13,24 @@ message Chunk {
     string libro = 3;
 }
 
+message LibroInfo{
+    string nro_libro = 1;
+}
+
+message UploadLibroRequest{
+    oneof data {
+        string libro = 1;
+        bytes chunk = 2;
+    }
+}
+
+message UploadLibroResponse{
+    string id = 1;
+    uint32 size = 2;
+}
+
 service BiblioService {
-    rpc Chunks(Chunk) returns (Mensaje) {}
-    rpc UnChunks(Mensaje) returns (Chunk) {}
+    rpc Chunks(Chunk) returns (Mensaje) {};
+    rpc UnChunks(Mensaje) returns (Chunk) {};
+    rpc UploadLibro(stream UploadLibroRequest) returns (UploadLibroResponse) {};
 }
